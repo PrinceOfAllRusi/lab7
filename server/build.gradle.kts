@@ -14,6 +14,7 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation("org.postgresql:postgresql:9.3-1100-jdbc4")
     api(project(":utilities"))
 }
 

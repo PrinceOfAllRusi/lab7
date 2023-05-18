@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3029cd4-295c-40f0-8340-2b7b2042e203" name="Changes" comment="" />
+    <list default="true" id="d3029cd4-295c-40f0-8340-2b7b2042e203" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/dataBase/DataBaseWorker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,12 +40,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -52,14 +58,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/JavaP/lab7Ktln/test"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JavaP/lab7Ktln/test&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JavaP\lab6Ktln\test\client\src\main\kotlin\multilib\client" />
@@ -73,7 +79,7 @@
       <recent name="multilib.utilities.serializ" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.ClientKt">
+  <component name="RunManager" selected="Kotlin.DataBaseWorkerKt">
     <configuration name="test [client:run]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -123,6 +129,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DataBaseWorkerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multilib.server.dataBase.DataBaseWorkerKt" />
+      <module name="multilib.server.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="multilib.server.ServerKt" />
       <module name="multilib.server.main" />
@@ -146,11 +159,13 @@
     <list>
       <item itemvalue="Gradle.test [client:run]" />
       <item itemvalue="Gradle.test [server:run]" />
+      <item itemvalue="Kotlin.DataBaseWorkerKt" />
       <item itemvalue="Kotlin.ClientKt" />
       <item itemvalue="Kotlin.ServerKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.DataBaseWorkerKt" />
         <item itemvalue="Kotlin.ClientKt" />
         <item itemvalue="Kotlin.ServerKt" />
       </list>
