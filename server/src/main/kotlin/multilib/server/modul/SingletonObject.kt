@@ -1,6 +1,8 @@
 package multilib.server.modul
 
 import allForCommands.commands.*
+import multilib.server.commands.LogIn
+import multilib.server.commands.Registration
 import org.koin.dsl.module
 import organization.MyCollection
 import organization.Organization
@@ -25,7 +27,8 @@ object SingletonObject {
             "remove_at" to RemoveAt(), "remove_lower" to RemoveLower(),
             "remove_all_by_employees_count" to RemoveAllByEmployeesCount(),
             "count_greater_than_annual_turnover" to CountGreaterThanAnnualTurnover(),
-            "filter_starts_with_name" to FilterStartsWithName())
+            "filter_starts_with_name" to FilterStartsWithName(),
+            "register" to Registration(), "log_in" to LogIn())
 
         val CommandsList: CommandsList = CommandsList( listCommand )
         single<CommandsList> { CommandsList }

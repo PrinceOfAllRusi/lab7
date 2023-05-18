@@ -1,6 +1,6 @@
 package allForCommands.commands
 
-import tools.result.Result
+import multilib.utilities.result.Result
 
 class Exit : AbstractCommand() {
 

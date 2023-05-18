@@ -3,7 +3,7 @@ package tools
 import multilib.client.tools.ScriptProcessor
 import multilib.utilities.commandsData.ClientCommandsData
 import organization.OrganizationType
-import tools.input.Input
+import multilib.utilities.input.*
 
 class DataProcessing {
 
@@ -34,7 +34,7 @@ class DataProcessing {
                         value.toInt()
                         if (data["value"]!!.containsKey("min")) {
                             if (value.toInt() < data["value"]!!["min"]!!.toInt()) {
-                                input.outMsg("Too small value\n")
+                                input.outMsg("Too small value")
                                 return sendCommandsData
                             }
                         }
@@ -46,7 +46,7 @@ class DataProcessing {
                     }
                 }
             } catch (e: NullPointerException) {
-                input.outMsg("Invalid data type\n")
+                input.outMsg("Invalid data type")
                 return sendCommandsData
             }
         }
@@ -64,7 +64,7 @@ class DataProcessing {
                         sendCommandsData.getMapData().put(key, value)
                         break
                     } else {
-                        input.outMsg("The field can not be empty\n")
+                        input.outMsg("The field can not be empty")
                         continue
                     }
                 }
@@ -76,25 +76,30 @@ class DataProcessing {
                         "OrganizationType" -> OrganizationType.valueOf(value.uppercase())
                     }
                 } catch (e: NullPointerException) {
-                    input.outMsg("The field can not be empty\n")
+                    input.outMsg("The field can not be empty")
                     continue
                 } catch (e: IllegalArgumentException) {
-                    input.outMsg("Invalid data type\n")
+                    input.outMsg("Invalid data type")
                     continue
                 }
                 if (map.containsKey("min")) {
                     if (value.toInt() < map["min"]!!.toInt()) {
-                        input.outMsg("Too small value\n")
+                        input.outMsg("Too small value")
                         continue
                     }
                 } else if (map.containsKey("max")) {
                     if (value.toInt() > map["max"]!!.toInt()) {
-                        input.outMsg("Too much value\n")
+                        input.outMsg("Too much value")
                         continue
                     }
-                } else if (map.containsKey("length")) {
-                    if (value.length > map["length"]!!.toInt()) {
-                        input.outMsg("Too much value\n")
+                } else if (map.containsKey("maxLength")) {
+                    if (value.length > map["maxLength"]!!.toInt()) {
+                        input.outMsg("Too much value")
+                        continue
+                    }
+                } else if(map.containsKey("minLength")) {
+                    if (value.length < map["minLength"]!!.toInt()) {
+                        input.outMsg("Too small value")
                         continue
                     }
                 }

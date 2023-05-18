@@ -3,7 +3,7 @@ package allForCommands.commands
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import tools.CommandsList
-import tools.result.Result
+import multilib.utilities.result.Result
 
 
 class Help : AbstractCommand(), KoinComponent {

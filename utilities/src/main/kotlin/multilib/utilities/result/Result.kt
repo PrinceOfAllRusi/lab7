@@ -1,4 +1,4 @@
-package tools.result
+package multilib.utilities.result
 
 class Result {
     private var exit: Boolean?

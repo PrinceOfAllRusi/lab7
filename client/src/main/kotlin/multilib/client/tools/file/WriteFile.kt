@@ -1,20 +1,19 @@
-package tools
+package multilib.client.tools.file
 
-import tools.input.Input
-import tools.result.Result
+import multilib.utilities.result.Result
 import java.io.BufferedWriter
 import java.io.FileWriter
 import java.io.IOException
 
 class WriteFile {
 
-    fun write(way: String, dataStr: String): Result? {
+    fun write(way: String, dataStr: String): Result {
         val env = way
         val result = Result()
 
         val path = System.getenv(env)
         if (path == null) {
-            result.setMessage("Данной переменной не существует\n")
+            result.setMessage("This variable does not exist")
             return result
         }
 
@@ -22,7 +21,7 @@ class WriteFile {
         try {
             writter.write(dataStr)
         } catch (e: IOException) {
-            result.setMessage("Отказано в доступе\n")
+            result.setMessage("Access denied")
             return result
         } finally {
             if ( writter != null ) {
@@ -30,7 +29,7 @@ class WriteFile {
             }
         }
 
-        result.setMessage("Запись выполнена успешно")
+        result.setMessage("Recording completed successfully")
 
         return result
     }

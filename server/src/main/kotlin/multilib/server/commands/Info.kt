@@ -4,7 +4,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.result.Result
+import multilib.utilities.result.Result
 
 class Info : AbstractCommand(), KoinComponent {
 
@@ -15,7 +15,7 @@ class Info : AbstractCommand(), KoinComponent {
         val s = StringBuilder()
         s.append( "Collection type " + orgs.javaClass.toString() + "\n" )
         s.append( "Initialization date " + orgs.getCreationDate() + "\n" )
-        s.append( "Amount of elements " + orgs.size + "\n" )
+        s.append( "Amount of elements " + orgs.size )
         val result = Result()
         result.setMessage(s.toString())
 

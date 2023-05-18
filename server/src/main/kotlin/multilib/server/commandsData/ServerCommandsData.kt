@@ -1,6 +1,8 @@
 package multilib.server.commandsData
 
 import allForCommands.commands.*
+import multilib.server.commands.LogIn
+import multilib.server.commands.Registration
 
 class ServerCommandsData {
     private var mapCommands: Map<String, Map<String, Map<String, String>>>
@@ -13,7 +15,8 @@ class ServerCommandsData {
             "remove_at" to RemoveAt().getFields(), "remove_lower" to RemoveLower().getFields(),
             "remove_all_by_employees_count" to RemoveAllByEmployeesCount().getFields(),
             "count_greater_than_annual_turnover" to CountGreaterThanAnnualTurnover().getFields(),
-            "filter_starts_with_name" to FilterStartsWithName().getFields())
+            "filter_starts_with_name" to FilterStartsWithName().getFields(),
+            "register" to Registration().getFields(), "log_in" to LogIn().getFields())
     }
     fun getMapCommands() = mapCommands
     fun setMapCommands(mapCommands: Map<String, Map<String, Map<String, String>>>){

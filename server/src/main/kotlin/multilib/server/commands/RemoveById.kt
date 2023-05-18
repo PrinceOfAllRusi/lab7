@@ -4,8 +4,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 
 class RemoveById: AbstractCommand(), KoinComponent {
@@ -32,8 +32,8 @@ class RemoveById: AbstractCommand(), KoinComponent {
             }
         }
         val result = Result()
-        if (condition) result.setMessage("Done\n")
-        else result.setMessage("This organization is not in the collection\n")
+        if (condition) result.setMessage("Done")
+        else result.setMessage("This organization is not in the collection")
 
         return result
     }

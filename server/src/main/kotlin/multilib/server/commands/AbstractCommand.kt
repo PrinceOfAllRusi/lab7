@@ -1,9 +1,7 @@
 package allForCommands.commands
 
-import multilib.utilities.commandsData.ClientCommandsData
-import tools.input.Input
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 abstract class AbstractCommand {
     private var description: String

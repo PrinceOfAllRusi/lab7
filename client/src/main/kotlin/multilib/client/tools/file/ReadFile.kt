@@ -1,8 +1,8 @@
-package tools
+package multilib.client.tools.file
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import tools.input.Input
+import multilib.utilities.input.*
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -15,7 +15,7 @@ class ReadFile: KoinComponent {
 
     fun read(input: Input): String? {
 
-        val env = input.getNextWord("Введите переменную окружения, содержащую путь к файлу\n")
+        val env = input.getNextWord("Enter an environment variable containing the path to the file")
         val s = StringBuilder()
 
         for(i in absoluteWay) {
@@ -28,7 +28,7 @@ class ReadFile: KoinComponent {
 
         val path = System.getenv(env)
         if (path == null) {
-            input.outMsg("Данной переменной не существует\n")
+            input.outMsg("This variable does not exist")
             return null
         }
         var reader: InputStreamReader? = null
@@ -44,9 +44,9 @@ class ReadFile: KoinComponent {
             s.append("\nexit")
 
         } catch (e: FileNotFoundException) {
-            input.outMsg("Данного файла не существует\n")
+            input.outMsg("This file does not exist")
         } catch (e: IOException) {
-            input.outMsg("Некорректный ввод данных\n")
+            input.outMsg("Incorrect data entry")
         } finally {
             if (reader != null) {
                 reader.close()

@@ -4,9 +4,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.input.InputFile
+import multilib.utilities.input.*
 import java.lang.StringBuilder
-import tools.result.Result
+import multilib.utilities.result.Result
 
 
 class FilterStartsWithName: AbstractCommand(), KoinComponent {
@@ -20,7 +20,7 @@ class FilterStartsWithName: AbstractCommand(), KoinComponent {
     )
     override fun action(data: Map<String, String?   >): Result {
         val str = data["value"]!!
-        val s: StringBuilder = StringBuilder()
+        val s = StringBuilder()
 
         val name = str.toCharArray()
         var orgName: CharArray
@@ -46,7 +46,7 @@ class FilterStartsWithName: AbstractCommand(), KoinComponent {
             }
         }
 
-        val result: Result = Result()
+        val result = Result()
         result.setMessage(s.toString())
 
         return result

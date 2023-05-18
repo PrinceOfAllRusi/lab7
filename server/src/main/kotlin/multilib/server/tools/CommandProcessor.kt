@@ -2,13 +2,8 @@ package tools
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import tools.input.Input
-import tools.input.InputFile
-import tools.result.Result
-import java.net.DatagramPacket
-import java.net.DatagramSocket
-import java.net.InetAddress
-import multilib.server.commandsData.ServerCommandsData
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 import multilib.server.tools.socket.ServerSocket
 import multilib.utilities.commandsData.*
 import multilib.utilities.serializ.Serializer
@@ -40,7 +35,7 @@ class CommandProcessor: KoinComponent {
 
                 clientList.getAddressList().add(socket.getPort().toString() + socket.getHost().toString())
                 socket.sendCommandsData()
-                input.outMsg("Client connected\n")
+                input.outMsg("Client connected")
                 continue
             }
 
@@ -49,12 +44,12 @@ class CommandProcessor: KoinComponent {
 
             command = receiveCommandsData.getName()
 
-            input.outMsg("Client send command: " + command + "\n")
+            input.outMsg("Client send command: " + command)
 
             result?.setMessage("")
 
             if ( !commandsList.containsCommand(command) ) {
-                result!!.setMessage("This command does not exist\n")
+                result!!.setMessage("This command does not exist")
             }
             else {
                 try {
@@ -62,12 +57,12 @@ class CommandProcessor: KoinComponent {
                     result = commandsList.getCommand(command)?.action(mapData)
 
                 } catch ( e: NumberFormatException ) {
-                    input.outMsg("Wrong data\n")
+                    input.outMsg("Wrong data")
                     if ( input.javaClass == InputFile("").javaClass ) {
                         continue
                     }
                 } catch ( e: NullPointerException ) {
-                    input.outMsg("Not all data entered\n")
+                    input.outMsg("Not all data entered")
                 }
             }
 

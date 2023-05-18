@@ -1,21 +1,20 @@
-package tools.input
+package multilib.utilities.input
 
 import java.util.*
 import java.util.LinkedList
 
-class InputSystem : Input {
-    private var input: Scanner = Scanner(System.`in`)
+class InputFile(s: String?) : Input {
+
+    private var input: Scanner = Scanner(s)
     private var list: LinkedList<String> = LinkedList()
     private var index = 0
 
     override fun getNextWord(qw: String?): String {
-        outMsg(qw)
         if (index < list.size) {
             return list[index++]
         }
         index = 0
         list = LinkedList()
-
         val words: List<String> = input.nextLine().split(" ")
         for (str in words) {
             if (!str.isBlank()) {
@@ -23,14 +22,12 @@ class InputSystem : Input {
             }
         }
         if (list.size < 1) {
-            return " "
+            list.add("blank")
         }
         return list[index++]
     }
     override fun outMsg(s: String?) {
-        if (s == null)
-            return
-        print(s)
+        return
     }
     override fun close() {
         input.close()

@@ -6,8 +6,8 @@ import organization.MyCollection
 import organization.Organization
 import organization.OrganizationType
 import tools.CreateOrganization
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 class InsertAt: AbstractCommand, KoinComponent {
 
@@ -19,7 +19,7 @@ class InsertAt: AbstractCommand, KoinComponent {
 
     constructor() {
         val typeStr = StringBuilder()
-        typeStr.append( "Select your organization type from these options\n" )
+        typeStr.append( "Select your organization type from these options" )
         val organizationType = OrganizationType.values()
         for ( i in organizationType.indices ) {
             typeStr.append( organizationType[i].toString() + "\n" )
@@ -31,26 +31,26 @@ class InsertAt: AbstractCommand, KoinComponent {
                 "type" to "Int"
             ),
             "name" to mapOf<String, String>(
-                "title" to "Enter the name of your organization\n",
+                "title" to "Enter the name of your organization",
                 "type" to "String"
             ),
             "annualTurnover" to  mapOf<String, String>(
-                "title" to "Enter the annual turnover of your organization\n",
+                "title" to "Enter the annual turnover of your organization",
                 "type" to "Double",
                 "min" to "1"
             ),
             "employeesCount" to mapOf<String, String>(
-                "title" to "Enter the number of employees in your organization\n",
+                "title" to "Enter the number of employees in your organization",
                 "type" to "Int",
                 "min" to "1"
             ),
             "x" to mapOf<String, String>(
-                "title" to "Enter your organization's X coordinates\n",
+                "title" to "Enter your organization's X coordinates",
                 "type" to "Int",
                 "min" to "-312"
             ),
             "y" to mapOf<String, String>(
-                "title" to "Enter your organization's Y coordinates\n",
+                "title" to "Enter your organization's Y coordinates",
                 "type" to "Long",
                 "max" to "212"
             ),
@@ -59,13 +59,13 @@ class InsertAt: AbstractCommand, KoinComponent {
                 "type" to "OrganizationType"
             ),
             "street" to mapOf<String, String>(
-                "title" to "Enter the name of the street where your organization is located\n",
+                "title" to "Enter the name of the street where your organization is located",
                 "type" to "String"
             ),
             "zipCode" to mapOf<String, String>(
                 "title" to "Enter the street code where your organization is located",
                 "type" to "String",
-                "length" to "27"
+                "maxLength" to "27"
             )
         )
     }
@@ -77,9 +77,9 @@ class InsertAt: AbstractCommand, KoinComponent {
         val result = Result()
         try {
             orgs.add(index, org)
-            result.setMessage("Done\n")
+            result.setMessage("Done")
         } catch (e: IndexOutOfBoundsException) {
-            result.setMessage("Cannot be added to this position\n")
+            result.setMessage("Cannot be added to this position")
         }
         return result
     }

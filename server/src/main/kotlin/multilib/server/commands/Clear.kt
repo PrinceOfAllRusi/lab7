@@ -5,7 +5,7 @@ import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
 import tools.CreateOrganization
-import tools.result.Result
+import multilib.utilities.result.Result
 
 class Clear: AbstractCommand(), KoinComponent {
 
@@ -18,7 +18,7 @@ class Clear: AbstractCommand(), KoinComponent {
         orgs.clear()
         creator.setCounter(0)
         val result = Result()
-        result.setMessage("Done\n")
+        result.setMessage("Done")
 
         return result
     }

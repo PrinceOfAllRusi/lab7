@@ -1,4 +1,4 @@
-package tools.input
+package multilib.utilities.input
 
 interface Input {
     fun getNextWord(qw: String?): String

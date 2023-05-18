@@ -1,7 +1,6 @@
 package tools.file
 
-import tools.input.Input
-import tools.result.Result
+import multilib.utilities.result.Result
 import java.io.BufferedWriter
 import java.io.FileWriter
 import java.io.IOException
@@ -13,12 +12,12 @@ class WriteFile {
         try {
             writter.write(dataStr)
         } catch (e: IOException) {
-            result.setMessage("Отказано в доступе\n")
+            result.setMessage("Access denied")
             return result
         } finally {
                 writter.close()
         }
-        result.setMessage("Запись выполнена успешно")
+        result.setMessage("Recording completed successfully")
 
         return result
     }

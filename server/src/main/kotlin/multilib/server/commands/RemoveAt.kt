@@ -4,8 +4,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 class RemoveAt: AbstractCommand(), KoinComponent {
 
@@ -24,9 +24,9 @@ class RemoveAt: AbstractCommand(), KoinComponent {
         val result = Result()
         try {
             orgs.removeAt(index)
-            result.setMessage("Done\n")
+            result.setMessage("Done")
         } catch (e: IndexOutOfBoundsException) {
-            result.setMessage("Wrong data\n")
+            result.setMessage("Wrong data")
         }
 
         return result

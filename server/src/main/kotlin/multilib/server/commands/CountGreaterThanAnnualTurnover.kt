@@ -4,8 +4,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 class CountGreaterThanAnnualTurnover: AbstractCommand(), KoinComponent {
 
@@ -27,7 +27,7 @@ class CountGreaterThanAnnualTurnover: AbstractCommand(), KoinComponent {
         }
 
         val result = Result()
-        result.setMessage(count.toString() + "\n")
+        result.setMessage(count.toString())
 
         return result
     }

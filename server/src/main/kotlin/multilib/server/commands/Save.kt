@@ -8,7 +8,7 @@ import organization.MyCollection
 import organization.Organization
 import multilib.utilities.serializ.TimeSerializer
 import tools.file.WriteFile
-import tools.result.Result
+import multilib.utilities.result.Result
 import multilib.utilities.serializ.TimeDeserializer
 import java.time.LocalDateTime
 

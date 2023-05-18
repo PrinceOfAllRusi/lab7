@@ -3,14 +3,11 @@ package tools
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import org.koin.core.component.KoinComponent
-import tools.input.Input
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 import multilib.utilities.commandsData.*
 import multilib.client.commandsData.ServerCommandsData
 import multilib.client.tools.socket.ClientSocket
-import java.net.DatagramPacket
-import java.net.DatagramSocket
-import java.net.InetAddress
 import multilib.utilities.serializ.Serializer
 
 class CommandProcessor: KoinComponent {
@@ -41,7 +38,7 @@ class CommandProcessor: KoinComponent {
             command = input.getNextWord(null).lowercase()
 
             if ( !commandsList.getMapCommands().containsKey(command) ) {
-                input.outMsg("This command does not exist\n")
+                input.outMsg("This command does not exist")
             }
             else {
                 try {
@@ -61,21 +58,21 @@ class CommandProcessor: KoinComponent {
                     } catch (e: UnrecognizedPropertyException) {
                         try {
                             commandsList = serializer.deserialize(receivedData)
-                            input.outMsg("Write command again\n")
+                            input.outMsg("Write command again")
                         } catch (e: UnrecognizedPropertyException) {
-                            input.outMsg("Wrong data\n")
+                            input.outMsg("Wrong data")
                         }
                     } catch (e: JsonParseException) {
-                        input.outMsg("Wrong data\n")
+                        input.outMsg("Wrong data")
                     }
 
 
                     input.outMsg(result.getMessage())
 
                 } catch ( e: NumberFormatException ) {
-                    input.outMsg("Wrong data\n")
+                    input.outMsg("Wrong data")
                 } catch ( e: NullPointerException ) {
-                    input.outMsg("Not all data entered\n")
+                    input.outMsg("Not all data entered")
                 }
             }
             if (result.getExit() == true) {

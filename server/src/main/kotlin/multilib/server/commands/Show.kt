@@ -4,7 +4,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.result.Result
+import multilib.utilities.result.Result
 
 
 class Show: AbstractCommand(), KoinComponent {

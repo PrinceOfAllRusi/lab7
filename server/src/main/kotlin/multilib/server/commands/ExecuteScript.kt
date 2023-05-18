@@ -1,11 +1,10 @@
 package allForCommands.commands
 
-import multilib.utilities.commandsData.ClientCommandsData
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import tools.CommandsList
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 import tools.DataList
 
 class ExecuteScript: AbstractCommand(), KoinComponent {
@@ -15,7 +14,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
     private val description: String = "read and execute a script from the specified file"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "script" to mapOf<String, String>(
-            "title" to "Enter an environment variable containing the path to the file\n",
+            "title" to "Enter an environment variable containing the path to the file",
             "type" to "String"
         )
     )
@@ -52,7 +51,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
         }
 
         val result = Result()
-        result.setMessage("Done\n")
+        result.setMessage("Done")
 
         return result
     }

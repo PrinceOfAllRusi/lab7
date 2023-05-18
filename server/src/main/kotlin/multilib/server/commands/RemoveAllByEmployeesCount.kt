@@ -4,8 +4,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
-import tools.input.InputFile
-import tools.result.Result
+import multilib.utilities.input.*
+import multilib.utilities.result.Result
 
 
 class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
@@ -30,13 +30,13 @@ class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
             }
         }
         if (newOrgs.size == 0) {
-            result.setMessage("No such organizations found\n")
+            result.setMessage("No such organizations found")
             return result
         }
         for ( org in newOrgs ) {
             orgs.remove(org)
         }
-        result.setMessage("Done\n")
+        result.setMessage("Done")
 
         return result
     }
