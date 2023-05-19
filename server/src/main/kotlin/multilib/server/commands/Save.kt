@@ -30,10 +30,7 @@ class Save: AbstractCommand(), KoinComponent {
 
         writer.write("D:/JavaP/lab6Ktln/Collection.txt", collection)
 
-        val result = Result()
-        result.setExit(true)
-
-        return result
+        return Result()
     }
     override fun getDescription(): String = description
 }

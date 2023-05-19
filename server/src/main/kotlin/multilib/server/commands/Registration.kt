@@ -2,10 +2,12 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
+import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
 
 class Registration: AbstractCommand() {
     private val dataBaseWorker = DataBaseWorker()
+    private val input = InputSystem()
     private val description: String = "allows you to register"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "login" to mapOf(
@@ -31,9 +33,11 @@ class Registration: AbstractCommand() {
         dataBaseWorker.registerUser(login, password)
         result.setMessage("Done")
         dataBaseWorker.closeConnectionToDataBase()
+        input.outMsg("Client registered")
         return result
     }
     override fun getDescription(): String = description
     override fun getFields() = fields
+    override fun tokenRequirements(): Boolean = false
 
 }

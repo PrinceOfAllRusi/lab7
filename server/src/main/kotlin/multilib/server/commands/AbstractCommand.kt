@@ -11,8 +11,8 @@ abstract class AbstractCommand {
         this.fields = mapOf()
     }
 
-    open fun action(map: Map<String, String?>): Result? {
-        return null
+    open fun action(map: Map<String, String?>): Result {
+        return Result()
     }
     open fun getDescription(): String = description
     open fun getFields() = fields
@@ -25,4 +25,5 @@ abstract class AbstractCommand {
 
         return mapData
     }
+    open fun tokenRequirements(): Boolean = true
 }

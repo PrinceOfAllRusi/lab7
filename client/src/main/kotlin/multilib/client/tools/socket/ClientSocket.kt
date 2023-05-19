@@ -1,5 +1,6 @@
 package multilib.client.tools.socket
 
+import multilib.utilities.input.InputSystem
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
@@ -18,6 +19,7 @@ class ClientSocket {
     private var receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
     private var receivedData = ""
     private var s = ""
+    private val input = InputSystem()
 
     fun send(s: String) {
         sendingDataBuffer = s.toByteArray()
@@ -27,12 +29,12 @@ class ClientSocket {
     fun receive(): String {
         s = ""
 
-        clientSocket.soTimeout = 10000
+//        clientSocket.soTimeout = 10000
         try {
             clientSocket.receive(receivingPacket)
             s = String(receivingPacket.data, 0, receivingPacket.length)
         } catch (e: SocketTimeoutException) {
-            println("Connection timeout\n")
+            input.outMsg("Connection timeout")
         }
 
         return s

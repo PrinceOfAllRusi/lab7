@@ -6,6 +6,7 @@ import multilib.server.commands.Registration
 
 class ServerCommandsData {
     private var mapCommands: Map<String, Map<String, Map<String, String>>>
+    private var commandsVersion: Int
     constructor(){
         mapCommands = mapOf("help" to Help().getFields(),
             "info" to Info().getFields(), "show" to Show().getFields(), "add" to Add().getFields(),
@@ -17,10 +18,15 @@ class ServerCommandsData {
             "count_greater_than_annual_turnover" to CountGreaterThanAnnualTurnover().getFields(),
             "filter_starts_with_name" to FilterStartsWithName().getFields(),
             "register" to Registration().getFields(), "log_in" to LogIn().getFields())
+        commandsVersion = 1
     }
     fun getMapCommands() = mapCommands
     fun setMapCommands(mapCommands: Map<String, Map<String, Map<String, String>>>){
         this.mapCommands = mapCommands
+    }
+    fun getCommandsVersion() = commandsVersion
+    fun setCommandsVersion(version: Int) {
+        this.commandsVersion = version
     }
 
 }

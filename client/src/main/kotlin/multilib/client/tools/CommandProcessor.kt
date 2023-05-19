@@ -23,29 +23,32 @@ class CommandProcessor: KoinComponent {
         var commandsList = ServerCommandsData()
         var sendCommandsData = ClientCommandsData()
         val dataProcessor = DataProcessing()
-        var xml = ""
+        var xml = serializer.serialize(sendCommandsData)
         var receivedData = ""
+        val help = "Enter \"help\" to see information about commands"
 
         socket.send(xml)
         xml = socket.receive()
 
         commandsList = serializer.deserialize(xml)
+        sendCommandsData.setCommandsVersion(commandsList.getCommandsVersion())
+        input.outMsg(help)
 
         while ( true ) {
 
             result.setMessage("")
+            sendCommandsData.clearMap()
 
             command = input.getNextWord(null).lowercase()
 
             if ( !commandsList.getMapCommands().containsKey(command) ) {
-                input.outMsg("This command does not exist")
+                input.outMsg("This command does not exist\n$help")
             }
             else {
                 try {
-                    sendCommandsData = dataProcessor.setData(input, commandsList.getMapCommands()[command]!!)
-
+                    sendCommandsData = dataProcessor.setData(input,
+                        commandsList.getMapCommands()[command]!!, sendCommandsData)
                     sendCommandsData.setName(command)
-
                     xml = serializer.serialize(sendCommandsData)
 
                     socket.send(xml)

@@ -7,8 +7,8 @@ import multilib.utilities.input.*
 
 class DataProcessing {
 
-    fun setData(input: Input, data: MutableMap<String, Map<String, String>>): ClientCommandsData {
-        val sendCommandsData = ClientCommandsData()
+    fun setData(input: Input, data: MutableMap<String, Map<String, String>>,
+                sendCommandsData: ClientCommandsData): ClientCommandsData {
 
         if (data.size == 0) {
             return sendCommandsData

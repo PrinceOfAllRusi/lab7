@@ -1,15 +1,18 @@
 package tools
+
+import multilib.utilities.commandsData.Token
+
 class DataList {
     private var scriptList: ArrayList<String>
-    private var addressList: ArrayList<String>
+    private var tokenList: ArrayList<Token>
     constructor() {
         scriptList = ArrayList()
-        addressList = ArrayList()
+        tokenList = ArrayList()
     }
-    constructor(scriptList: ArrayList<String>, addressList: ArrayList<String>) {
+    constructor(scriptList: ArrayList<String>, tokenList: ArrayList<Token>) {
         this.scriptList = scriptList
-        this.addressList = addressList
+        this.tokenList = tokenList
     }
     fun getScriptList() = scriptList
-    fun getAddressList() = addressList
+    fun getTokenList() = tokenList
 }

@@ -1,6 +1,8 @@
 package multilib.server.tools.socket
 
 import multilib.server.commandsData.ServerCommandsData
+import multilib.utilities.commandsData.ClientCommandsData
+import multilib.utilities.commandsData.Token
 import multilib.utilities.serializ.Serializer
 import java.net.DatagramPacket
 import java.net.DatagramSocket
@@ -14,10 +16,11 @@ class ServerSocket {
     private var sendingDataBuffer = ByteArray(65535)
     private val inputPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
     private lateinit var outputPacket: DatagramPacket
-    private var receivedData = ""
+    private var receivedCommandsData = ClientCommandsData()
     private var s = ""
     private val commandsData = ServerCommandsData()
     private val serializer = Serializer()
+    private var token: Token? = null
 
     fun sendCommandsData() {
         val xmlCommands = serializer.serialize(commandsData)
@@ -36,7 +39,11 @@ class ServerSocket {
         serverSocket.receive(inputPacket)
         port = inputPacket.port
         host = inputPacket.address
+        s = getXmlData()
+        receivedCommandsData = serializer.deserialize(s)
+        token = receivedCommandsData.getToken()
     }
+    fun getToken() = token
     fun getPort() = port
     fun getHost() = host
     fun getXmlData() = String(inputPacket.data, 0, inputPacket.length)

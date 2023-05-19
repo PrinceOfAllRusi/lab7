@@ -16,10 +16,11 @@ class CommandProcessor: KoinComponent {
 
     fun process(input: Input) {
 
-        var result: Result? = Result()
+        var result = Result()
         var mapData: Map<String, String?>
         val serializer = Serializer()
         val socket = ServerSocket()
+        var registrationRequirement = true
 
         var command = ""
         var receiveCommandsData = ClientCommandsData() //получаемые от клиента данные
@@ -28,49 +29,52 @@ class CommandProcessor: KoinComponent {
 
         while ( true ) {
 
+            result.setMessage("")
             socket.receive()
-
-            if (clientList.getAddressList().size == 0 ||
-                !clientList.getAddressList().contains(socket.getPort().toString() + socket.getHost().toString())) {
-
-                clientList.getAddressList().add(socket.getPort().toString() + socket.getHost().toString())
-                socket.sendCommandsData()
-                input.outMsg("Client connected")
-                continue
-            }
-
             xml = socket.getXmlData()
             receiveCommandsData = serializer.deserialize(xml)
 
+            if (commandsList.getCommandsVersion() != receiveCommandsData.getCommandsVersion()) {
+                socket.sendCommandsData()
+                input.outMsg("Client connected without registration")
+                continue
+            }
             command = receiveCommandsData.getName()
+            input.outMsg("Client send command: $command")
 
-            input.outMsg("Client send command: " + command)
-
-            result?.setMessage("")
-
-            if ( !commandsList.containsCommand(command) ) {
-                result!!.setMessage("This command does not exist")
+            if (receiveCommandsData.getToken()!!.getToken() == "" &&
+                commandsList.getCommand(command)!!.tokenRequirements()) {
+                val s = StringBuilder()
+                s.append("register : ")
+                s.append(commandsList.getCommand("register")!!.getDescription() + "\n")
+                s.append("log_in : ")
+                s.append(commandsList.getCommand("log_in")!!.getDescription() + "\n")
+                s.append("exit : ")
+                s.append(commandsList.getCommand("exit")!!.getDescription() + "\n")
+                result.setMessage("You cannot do it. Login or register\n$s")
+                xml = serializer.serialize(result)
+                socket.send(xml)
+                continue
             }
-            else {
-                try {
-                    mapData = receiveCommandsData.getMapData()
-                    result = commandsList.getCommand(command)?.action(mapData)
-
-                } catch ( e: NumberFormatException ) {
-                    input.outMsg("Wrong data")
-                    if ( input.javaClass == InputFile("").javaClass ) {
-                        continue
-                    }
-                } catch ( e: NullPointerException ) {
-                    input.outMsg("Not all data entered")
+            try {
+                mapData = receiveCommandsData.getMapData()
+                mapData.put("token", receiveCommandsData.getToken()!!.getToken())
+                mapData.put("address", socket.getHost().toString())
+                mapData.put("port", socket.getPort().toString())
+                result = commandsList.getCommand(command)?.action(mapData)!!
+            } catch ( e: NumberFormatException ) {
+                input.outMsg("Wrong data")
+                if ( input.javaClass == InputFile("").javaClass ) {
+                    continue
                 }
+            } catch ( e: NullPointerException ) {
+                input.outMsg("Not all data entered")
             }
-
             xml = serializer.serialize(result)
             socket.send(xml)
 
-            if (result?.getExit() == true) {
-                clientList.getAddressList().remove(socket.getPort().toString() + socket.getHost().toString())
+            if (result.getExit() == true) {
+                clientList.getTokenList().remove(socket.getToken())
                 result.setExit(false)
             }
         }

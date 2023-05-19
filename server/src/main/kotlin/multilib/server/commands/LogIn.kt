@@ -2,9 +2,16 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
+import multilib.utilities.commandsData.Token
+import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import tools.DataList
 
-class LogIn: AbstractCommand() {
+class LogIn: AbstractCommand(), KoinComponent {
+    private val clientList: DataList by inject()
+    private val input = InputSystem()
     private val dataBaseWorker = DataBaseWorker()
     private val description: String = "allows you to login"
     private var fields: Map<String, Map<String, String>> = mapOf(
@@ -28,11 +35,18 @@ class LogIn: AbstractCommand() {
             result.setMessage("This user does not exist")
             return result
         }
-        result.setMessage("You are log in")
         dataBaseWorker.closeConnectionToDataBase()
+        input.outMsg("Client log in")
+        result.setMessage("You are log in")
+        val token = Token()
+        token.setAddress(data["address"]!!)
+        token.setPort(data["port"]!!)
+        token.setHashToken()
+        clientList.getTokenList().add(token)
         return result
     }
     override fun getDescription(): String = description
     override fun getFields() = fields
+    override fun tokenRequirements(): Boolean = false
 
 }
