@@ -19,7 +19,7 @@ class RemoveLower: AbstractCommand(), KoinComponent {
         )
     )
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val count = data["value"]!!.toInt()
         val newOrgs = MyCollection<Organization>()
@@ -33,7 +33,6 @@ class RemoveLower: AbstractCommand(), KoinComponent {
             orgs.remove(org)
         }
 
-        val result = Result()
         result.setMessage("Done")
 
         return result

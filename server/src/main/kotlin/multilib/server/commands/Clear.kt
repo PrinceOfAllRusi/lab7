@@ -14,10 +14,9 @@ class Clear: AbstractCommand(), KoinComponent {
     private val description: String = "clear the collection"
     private var fields: Map<String, Map<String, String>> = mapOf()
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         orgs.clear()
         creator.setCounter(0)
-        val result = Result()
         result.setMessage("Done")
 
         return result

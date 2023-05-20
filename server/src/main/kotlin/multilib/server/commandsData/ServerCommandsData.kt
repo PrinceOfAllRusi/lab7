@@ -2,6 +2,7 @@ package multilib.server.commandsData
 
 import allForCommands.commands.*
 import multilib.server.commands.LogIn
+import multilib.server.commands.LogOut
 import multilib.server.commands.Registration
 
 class ServerCommandsData {
@@ -17,7 +18,8 @@ class ServerCommandsData {
             "remove_all_by_employees_count" to RemoveAllByEmployeesCount().getFields(),
             "count_greater_than_annual_turnover" to CountGreaterThanAnnualTurnover().getFields(),
             "filter_starts_with_name" to FilterStartsWithName().getFields(),
-            "register" to Registration().getFields(), "log_in" to LogIn().getFields())
+            "register" to Registration().getFields(), "log_in" to LogIn().getFields(),
+            "log_out" to LogOut().getFields())
         commandsVersion = 1
     }
     fun getMapCommands() = mapCommands

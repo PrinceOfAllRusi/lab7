@@ -25,9 +25,8 @@ class LogIn: AbstractCommand(), KoinComponent {
         )
     )
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         dataBaseWorker.getConnectionToDataBase()
-        val result = Result()
         val login = data["login"]!!
         val password = data["password"]!!
 
@@ -43,6 +42,7 @@ class LogIn: AbstractCommand(), KoinComponent {
         token.setPort(data["port"]!!)
         token.setHashToken()
         clientList.getTokenList().add(token)
+        result.setToken(token)
         return result
     }
     override fun getDescription(): String = description

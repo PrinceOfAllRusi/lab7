@@ -61,7 +61,7 @@ class CommandProcessor: KoinComponent {
                 mapData.put("token", receiveCommandsData.getToken()!!.getToken())
                 mapData.put("address", socket.getHost().toString())
                 mapData.put("port", socket.getPort().toString())
-                result = commandsList.getCommand(command)?.action(mapData)!!
+                result = commandsList.getCommand(command)?.action(mapData, result)!!
             } catch ( e: NumberFormatException ) {
                 input.outMsg("Wrong data")
                 if ( input.javaClass == InputFile("").javaClass ) {

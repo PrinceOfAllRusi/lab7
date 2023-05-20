@@ -19,7 +19,7 @@ class RemoveById: AbstractCommand(), KoinComponent {
         )
     )
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val id: Int = data["value"]!!.toInt()
         var condition: Boolean = false
@@ -31,7 +31,6 @@ class RemoveById: AbstractCommand(), KoinComponent {
                 break
             }
         }
-        val result = Result()
         if (condition) result.setMessage("Done")
         else result.setMessage("This organization is not in the collection")
 

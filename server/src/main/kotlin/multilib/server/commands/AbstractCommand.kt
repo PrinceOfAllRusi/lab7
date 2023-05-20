@@ -11,8 +11,8 @@ abstract class AbstractCommand {
         this.fields = mapOf()
     }
 
-    open fun action(map: Map<String, String?>): Result {
-        return Result()
+    open fun action(map: Map<String, String?>, result: Result): Result {
+        return result
     }
     open fun getDescription(): String = description
     open fun getFields() = fields

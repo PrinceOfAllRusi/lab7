@@ -18,10 +18,9 @@ class RemoveAt: AbstractCommand(), KoinComponent {
         )
     )
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val index = data["value"]!!.toInt()
-        val result = Result()
         try {
             orgs.removeAt(index)
             result.setMessage("Done")

@@ -70,11 +70,10 @@ class InsertAt: AbstractCommand, KoinComponent {
         )
     }
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val index = data["value"]!!.toInt()
         val org = create.create(data, null)
-        val result = Result()
         try {
             orgs.add(index, org)
             result.setMessage("Done")

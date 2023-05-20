@@ -18,11 +18,10 @@ class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
             "min" to "0"
         )
     )
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val count = data["value"]!!.toInt()
         val newOrgs = MyCollection<Organization>()
-        val result = Result()
 
         for ( org in orgs ) {
             if ( org.getEmployeesCount()!! == count ) {

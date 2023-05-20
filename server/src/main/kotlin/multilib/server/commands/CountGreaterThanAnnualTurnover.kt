@@ -16,7 +16,7 @@ class CountGreaterThanAnnualTurnover: AbstractCommand(), KoinComponent {
             "type" to "Int"
         )
     )
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val turnover: Double = data["value"]!!.toDouble()
         var count = 0
@@ -26,7 +26,6 @@ class CountGreaterThanAnnualTurnover: AbstractCommand(), KoinComponent {
             }
         }
 
-        val result = Result()
         result.setMessage(count.toString())
 
         return result

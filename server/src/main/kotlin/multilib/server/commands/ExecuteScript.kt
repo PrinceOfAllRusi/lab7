@@ -18,7 +18,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
             "type" to "String"
         )
     )
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         var mapData: MutableMap<String, String> = mutableMapOf()
         val s = data["script"]
@@ -36,7 +36,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
                         data = input.getNextWord(null)
                     }
                     mapData = commandsList.getCommand(command)!!.commandBuilding(mapData, dataList)
-                    commandsList.getCommand(command)!!.action(mapData)
+                    commandsList.getCommand(command)!!.action(mapData, result)
                     dataList = ""
                     mapData.clear()
                     command = data
@@ -47,10 +47,9 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
             }
         } catch (e: NoSuchElementException) {
             mapData = commandsList.getCommand(command)!!.commandBuilding(mapData, dataList)
-            commandsList.getCommand(command)!!.action(mapData)
+            commandsList.getCommand(command)!!.action(mapData, result)
         }
 
-        val result = Result()
         result.setMessage("Done")
 
         return result

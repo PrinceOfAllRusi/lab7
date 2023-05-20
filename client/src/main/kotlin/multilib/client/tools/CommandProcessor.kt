@@ -38,6 +38,7 @@ class CommandProcessor: KoinComponent {
 
             result.setMessage("")
             sendCommandsData.clearMap()
+            sendCommandsData.setToken(result.getToken())
 
             command = input.getNextWord(null).lowercase()
 

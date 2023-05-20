@@ -15,4 +15,14 @@ class DataList {
     }
     fun getScriptList() = scriptList
     fun getTokenList() = tokenList
+    fun getTokenFromTokenList(tokenName: String): Token {
+        var concreteToken = Token()
+        for (token in tokenList) {
+            if (token.getToken() == tokenName) {
+                concreteToken = token
+                break
+            }
+        }
+        return concreteToken
+    }
 }

@@ -11,9 +11,8 @@ class Help : AbstractCommand(), KoinComponent {
     private val description: String = "display help on available commands"
     private val commandsList: CommandsList by inject()
     private var fields: Map<String, Map<String, String>> = mapOf()
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
-        val result = Result()
         result.setMessage(commandsList.getDescription() + "\n")
 
         return result

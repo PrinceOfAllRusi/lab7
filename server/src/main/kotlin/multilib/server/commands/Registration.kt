@@ -20,9 +20,8 @@ class Registration: AbstractCommand() {
             "minLength" to "8"
         )
     )
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         dataBaseWorker.getConnectionToDataBase()
-        val result = Result()
         val login = data["login"]!!
         val password = data["password"]!!
 

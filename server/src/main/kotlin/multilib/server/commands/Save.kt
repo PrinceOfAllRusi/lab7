@@ -17,7 +17,7 @@ class Save: AbstractCommand(), KoinComponent {
     private val orgs: MyCollection<Organization> by inject()
     private val description: String = "save collection to file"
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         val writer = WriteFile()
 
         val mapper = XmlMapper()
@@ -30,7 +30,7 @@ class Save: AbstractCommand(), KoinComponent {
 
         writer.write("D:/JavaP/lab6Ktln/Collection.txt", collection)
 
-        return Result()
+        return result
     }
     override fun getDescription(): String = description
 }

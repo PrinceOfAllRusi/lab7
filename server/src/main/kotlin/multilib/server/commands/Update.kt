@@ -79,7 +79,7 @@ class Update: AbstractCommand, KoinComponent {
         )
     }
 
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
 
         val id = data["value"]!!.toInt()
         var lastOrganization = Organization()
@@ -97,7 +97,6 @@ class Update: AbstractCommand, KoinComponent {
 
         orgs.sortWith( orgComp )
 
-        val result = Result()
         result.setMessage("Done")
 
         return result

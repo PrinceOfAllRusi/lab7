@@ -14,19 +14,13 @@ class LogOut: AbstractCommand(), KoinComponent {
     private val description: String = "log out from app"
     private var fields: Map<String, Map<String, String>> = mapOf()
 
-    override fun action(data: Map<String, String?>): Result {
-        val tokenName = data["token"]
-        var lastToken = Token()
-        for (token in clientList.getTokenList()) {
-            if (token.getToken() == tokenName) {
-                lastToken = token
-                break
-            }
-        }
+    override fun action(data: Map<String, String?>, result: Result): Result {
+        val tokenName = data["token"]!!
+        val lastToken = clientList.getTokenFromTokenList(tokenName)
         clientList.getTokenList().remove(lastToken)
-        val result = Result()
         result.setMessage("You are log out")
         input.outMsg("Client log out")
+        result.setToken(Token())
 
         return result
     }

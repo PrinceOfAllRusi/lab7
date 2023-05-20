@@ -11,12 +11,11 @@ class Info : AbstractCommand(), KoinComponent {
     private val orgs: MyCollection<Organization> by inject()
     private val description: String = "display information about the collection"
     private var fields: Map<String, Map<String, String>> = mapOf()
-    override fun action(data: Map<String, String?>): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         val s = StringBuilder()
         s.append( "Collection type " + orgs.javaClass.toString() + "\n" )
         s.append( "Initialization date " + orgs.getCreationDate() + "\n" )
         s.append( "Amount of elements " + orgs.size )
-        val result = Result()
         result.setMessage(s.toString())
 
         return result

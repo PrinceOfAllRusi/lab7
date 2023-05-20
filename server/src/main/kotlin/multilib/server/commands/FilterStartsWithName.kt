@@ -18,7 +18,7 @@ class FilterStartsWithName: AbstractCommand(), KoinComponent {
             "type" to "String"
         )
     )
-    override fun action(data: Map<String, String?   >): Result {
+    override fun action(data: Map<String, String?>, result: Result): Result {
         val str = data["value"]!!
         val s = StringBuilder()
 
@@ -46,7 +46,6 @@ class FilterStartsWithName: AbstractCommand(), KoinComponent {
             }
         }
 
-        val result = Result()
         result.setMessage(s.toString())
 
         return result
