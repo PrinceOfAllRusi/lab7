@@ -4,6 +4,7 @@ import allForCommands.commands.*
 import multilib.server.commands.LogIn
 import multilib.server.commands.LogOut
 import multilib.server.commands.Registration
+import multilib.server.dataBase.DataBaseWorker
 import org.koin.dsl.module
 import organization.MyCollection
 import organization.Organization
@@ -19,6 +20,7 @@ object SingletonObject {
         single<ArrayList<String>> { ArrayList() }
         single<CreateOrganization> { CreateOrganization() }
         single<DataList> { DataList() }
+        single<DataBaseWorker> { DataBaseWorker() }
 
         val listCommand: Map<String, AbstractCommand> = mapOf("help" to Help(),
             "info" to Info(), "show" to Show(), "add" to Add(),

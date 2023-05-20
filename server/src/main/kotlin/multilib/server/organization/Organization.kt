@@ -20,7 +20,7 @@ class Organization {
         val s = StringBuilder()
         s.append("Organization id: ").append(id)
         s.append("\nOrganization name: ").append(name)
-        s.append("\nОrganization coordinates: ").append(coordinates.toString())
+        s.append("\nOrganization coordinates: ").append(coordinates.toString())
         s.append("\nOrganization creation time: ").append(creationDate!!.format(formatter))
         s.append("\nAnnual turnover of the organization: ").append(annualTurnover)
         s.append("\nNumber of employees in the organization: ").append(employeesCount)

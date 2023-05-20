@@ -2,6 +2,7 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
+import multilib.server.tools.Hasher
 import multilib.utilities.commandsData.Token
 import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
@@ -10,9 +11,10 @@ import org.koin.core.component.inject
 import tools.DataList
 
 class LogIn: AbstractCommand(), KoinComponent {
+    private val dataBaseWorker: DataBaseWorker by inject()
     private val clientList: DataList by inject()
+    private val hasher = Hasher()
     private val input = InputSystem()
-    private val dataBaseWorker = DataBaseWorker()
     private val description: String = "allows you to login"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "login" to mapOf(
@@ -26,15 +28,13 @@ class LogIn: AbstractCommand(), KoinComponent {
     )
 
     override fun action(data: Map<String, String?>, result: Result): Result {
-        dataBaseWorker.getConnectionToDataBase()
         val login = data["login"]!!
-        val password = data["password"]!!
+        val password = hasher.hash(data["password"]!!)
 
         if (dataBaseWorker.getUserInfoForLogIn(login, password)) {
             result.setMessage("This user does not exist")
             return result
         }
-        dataBaseWorker.closeConnectionToDataBase()
         input.outMsg("Client log in")
         result.setMessage("You are log in")
         val token = Token()

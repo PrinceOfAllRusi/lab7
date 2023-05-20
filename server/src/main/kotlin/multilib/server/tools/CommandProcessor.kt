@@ -1,5 +1,6 @@
 package tools
 
+import multilib.server.dataBase.DataBaseWorker
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import multilib.utilities.input.*
@@ -11,6 +12,7 @@ import multilib.utilities.serializ.Serializer
 
 class CommandProcessor: KoinComponent {
 
+    private val dataBaseWorker: DataBaseWorker by inject()
     private val commandsList: CommandsList by inject()
     private val clientList: DataList by inject()
 
@@ -20,7 +22,8 @@ class CommandProcessor: KoinComponent {
         var mapData: Map<String, String?>
         val serializer = Serializer()
         val socket = ServerSocket()
-        var registrationRequirement = true
+        dataBaseWorker.getConnectionToDataBase()
+        dataBaseWorker.fillOrgsList()
 
         var command = ""
         var receiveCommandsData = ClientCommandsData() //получаемые от клиента данные

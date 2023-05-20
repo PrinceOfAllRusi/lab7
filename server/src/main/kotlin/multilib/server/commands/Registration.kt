@@ -2,11 +2,15 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
+import multilib.server.tools.Hasher
 import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class Registration: AbstractCommand() {
-    private val dataBaseWorker = DataBaseWorker()
+class Registration: AbstractCommand(), KoinComponent {
+    private val dataBaseWorker: DataBaseWorker by inject()
+    private val hasher = Hasher()
     private val input = InputSystem()
     private val description: String = "allows you to register"
     private var fields: Map<String, Map<String, String>> = mapOf(
@@ -21,9 +25,8 @@ class Registration: AbstractCommand() {
         )
     )
     override fun action(data: Map<String, String?>, result: Result): Result {
-        dataBaseWorker.getConnectionToDataBase()
         val login = data["login"]!!
-        val password = data["password"]!!
+        val password = hasher.hash(data["password"]!!)
 
         if (dataBaseWorker.getUserInfoForRegistration(login)) {
             result.setMessage("This name already exist")
@@ -31,7 +34,6 @@ class Registration: AbstractCommand() {
         }
         dataBaseWorker.registerUser(login, password)
         result.setMessage("Done")
-        dataBaseWorker.closeConnectionToDataBase()
         input.outMsg("Client registered")
         return result
     }
