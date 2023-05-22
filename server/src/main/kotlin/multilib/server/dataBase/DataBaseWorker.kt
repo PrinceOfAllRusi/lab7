@@ -1,6 +1,7 @@
 package multilib.server.dataBase
 
 import multilib.utilities.input.*
+import multilib.utilities.result.Result
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import organization.MyCollection
@@ -31,7 +32,7 @@ class DataBaseWorker: KoinComponent {
             connection = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/lab7", "postgres", "8574")
         } catch (e: SQLException) {
-            e.printStackTrace()
+            input.outMsg("Database access error")
         }
     }
     fun closeConnectionToDataBase() {
@@ -47,7 +48,7 @@ class DataBaseWorker: KoinComponent {
             preparedStatement.executeUpdate()
 
         } catch (e: SQLException) {
-            e.printStackTrace()
+            input.outMsg("Database access error")
         }
         preparedStatement.close()
         sql = ""
@@ -66,7 +67,7 @@ class DataBaseWorker: KoinComponent {
                 flag = resultSet.getBoolean(1)
             }
         } catch (e: SQLException) {
-            e.printStackTrace()
+            input.outMsg("Database access error")
         }
         preparedStatement.close()
         sql = ""
@@ -84,15 +85,14 @@ class DataBaseWorker: KoinComponent {
                 flag = resultSet.getBoolean(1)
             }
         } catch (e: SQLException) {
-            e.printStackTrace()
+            input.outMsg("Database access error when adding user")
         }
         preparedStatement.close()
         sql = ""
         return flag
     }
     fun fillOrgsList() {
-        sql = "select o.id, o.name, o.creationdate, o.annualturnover, o.employeescount, o.type, c.x, c.y," +
-                " a.street, a.zipcode from organization as o natural join coordinates as c natural join address as a;"
+        sql = "select * from organization;"
         val orgData = mutableMapOf<String, String>()
         var id = 0
         var crearionDate = LocalDateTime.now()
@@ -105,13 +105,13 @@ class DataBaseWorker: KoinComponent {
             while (resultSet.next()) {
                 id = resultSet.getInt(1)
                 orgData.put("name", resultSet.getString(2))
-                ts = resultSet.getTimestamp(3)
+                orgData.put("x", resultSet.getString(3))
+                orgData.put("y", resultSet.getString(4))
+                ts = resultSet.getTimestamp(5)
                 crearionDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), ZoneOffset.UTC)
-                orgData.put("annualTurnover", resultSet.getString(4))
-                orgData.put("employeesCount", resultSet.getString(5))
-                orgData.put("type", resultSet.getString(6))
-                orgData.put("x", resultSet.getString(7))
-                orgData.put("y", resultSet.getString(8))
+                orgData.put("annualTurnover", resultSet.getString(6))
+                orgData.put("employeesCount", resultSet.getString(7))
+                orgData.put("type", resultSet.getString(8))
                 orgData.put("street", resultSet.getString(9))
                 orgData.put("zipCode", resultSet.getString(10))
                 organization = creator.create(orgData, null)
@@ -119,11 +119,59 @@ class DataBaseWorker: KoinComponent {
                 organization.setCreationDate(crearionDate)
                 orgs.add(organization)
             }
-
         } catch (e: SQLException) {
-            e.printStackTrace()
+            input.outMsg("Database access error")
         }
         preparedStatement.close()
         sql = ""
+    }
+    fun getUserId(login: String): Int? {//возвращает id нужного пользователя
+        var id = 0
+        sql = "SELET * FROM users WHERE login = ?;"
+        try {
+            preparedStatement = connection.prepareStatement(sql)
+            preparedStatement.setString(1, login)
+            resultSet = preparedStatement.executeQuery()
+            id = resultSet.getInt(1)
+        } catch (e: SQLException) {
+            input.outMsg("Database access error when searching user")
+            return null
+        }
+        return id
+    }
+    fun addOrg(organization: Organization, result: Result): Result {
+        sql = "INSERT INTO organization VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        val login = result.getToken().getLogin()
+        val id = getUserId(login)
+        if (id == null) {
+            result.setMessage("Error, please try again")
+            return result
+        }
+        try {
+            preparedStatement = connection.prepareStatement(sql)
+            preparedStatement.setString(1, organization.getId().toString())
+            preparedStatement.setString(2, organization.getName())
+            preparedStatement.setString(3, organization.getCoordinatesX())
+            preparedStatement.setString(4, organization.getCoordinatesY())
+            preparedStatement.setString(5, organization.getCreationDate().toString())
+            preparedStatement.setString(6, organization.getAnnualTurnover().toString())
+            preparedStatement.setString(7, organization.getEmployeesCount().toString())
+            preparedStatement.setString(8, organization.getType().toString())
+            preparedStatement.setString(9, organization.getPostalAddressStreet())
+            preparedStatement.setString(10, organization.getPostalAddressZipCode())
+            preparedStatement.setString(11, id.toString())
+            resultSet = preparedStatement.executeQuery()
+
+            orgs.add(organization)
+            result.setMessage("Done")
+
+        } catch (e: SQLException) {
+            input.outMsg("Database access error when adding organization")
+            result.setMessage("Error, please try again")
+        }
+        preparedStatement.close()
+
+
+        return result
     }
 }

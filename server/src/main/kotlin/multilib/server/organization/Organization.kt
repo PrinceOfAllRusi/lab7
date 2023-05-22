@@ -36,10 +36,10 @@ class Organization {
     fun setCoordinates(coordinates: Coordinates) {
         this.coordinates = coordinates
     }
-    fun getCoordinatesX(): String? {
+    fun getCoordinatesX(): String {
         return coordinates!!.getX().toString()
     }
-    fun getCoordinatesY(): String? {
+    fun getCoordinatesY(): String {
         return coordinates!!.getY().toString()
     }
     fun setCoordinatesX(x: Int) {

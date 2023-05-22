@@ -45,7 +45,8 @@ class CommandProcessor: KoinComponent {
             command = receiveCommandsData.getName()
             input.outMsg("Client send command: $command")
 
-            if (receiveCommandsData.getToken()!!.getToken() == "" &&
+            if ((receiveCommandsData.getToken()!!.getToken() == "" ||
+                        !receiveCommandsData.getToken()!!.validityCheck()) &&
                 commandsList.getCommand(command)!!.tokenRequirements()) {
                 val s = StringBuilder()
                 s.append("register : ")

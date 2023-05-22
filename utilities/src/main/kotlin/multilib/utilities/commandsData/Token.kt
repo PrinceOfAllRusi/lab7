@@ -8,11 +8,13 @@ class Token {
     private var time: LocalDateTime
     private var address: String
     private var port: String
+    private var login: String
     constructor() {
         token = ""
         time = LocalDateTime.now()
         address = ""
         port = ""
+        login = ""
     }
     fun getTime() = time
     fun setTime(time: LocalDateTime) {
@@ -36,6 +38,10 @@ class Token {
         this.port = host
     }
     fun getPort() = port
+    fun setLogin(login: String) {
+        this.login = login
+    }
+    fun getLogin() = login
     fun validityCheck(): Boolean { //вернет true, если токен валидный
         val hours = time.until(LocalDateTime.now(), ChronoUnit.HOURS)
         return hours < 1

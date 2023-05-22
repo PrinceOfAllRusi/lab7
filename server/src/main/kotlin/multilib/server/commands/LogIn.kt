@@ -40,6 +40,7 @@ class LogIn: AbstractCommand(), KoinComponent {
         val token = Token()
         token.setAddress(data["address"]!!)
         token.setPort(data["port"]!!)
+        token.setLogin(login)
         token.setHashToken()
         clientList.getTokenList().add(token)
         result.setToken(token)
