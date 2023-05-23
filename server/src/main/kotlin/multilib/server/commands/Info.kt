@@ -5,6 +5,7 @@ import org.koin.core.component.inject
 import organization.MyCollection
 import organization.Organization
 import multilib.utilities.result.Result
+import java.time.format.DateTimeFormatter
 
 class Info : AbstractCommand(), KoinComponent {
 
@@ -13,9 +14,10 @@ class Info : AbstractCommand(), KoinComponent {
     private var fields: Map<String, Map<String, String>> = mapOf()
     override fun action(data: Map<String, String?>, result: Result): Result {
         val s = StringBuilder()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         s.append( "Collection type " + orgs.javaClass.toString() + "\n" )
-        s.append( "Initialization date " + orgs.getCreationDate() + "\n" )
-        s.append( "Amount of elements " + orgs.size )
+        s.append( "Initialization date " + orgs.getCreationDate()!!.format(formatter) + "\n" )
+        s.append( "Amount of elements " + orgs.size + "\n")
         result.setMessage(s.toString())
 
         return result

@@ -17,7 +17,7 @@ class DataProcessing {
             val env = input.getNextWord(data["script"]!!["title"])
             val scriptProcessor = ScriptProcessor()
             val script = scriptProcessor.action(env)
-            sendCommandsData.getMapData().put("script", script)
+            sendCommandsData.getMapData()["script"] = script
             scriptProcessor.clearScript()
             return sendCommandsData
         }
@@ -28,7 +28,7 @@ class DataProcessing {
             try {
                 when (data["value"]!!["type"]) {
                     "String" -> {
-                        sendCommandsData.getMapData().put("value", value)
+                        sendCommandsData.getMapData()["value"] = value
                     }
                     "Int" -> {
                         value.toInt()
@@ -38,7 +38,7 @@ class DataProcessing {
                                 return sendCommandsData
                             }
                         }
-                        sendCommandsData.getMapData().put("value", value)
+                        sendCommandsData.getMapData()["value"] = value
 
                         if (data.size == 1) {
                             return sendCommandsData
@@ -46,7 +46,7 @@ class DataProcessing {
                     }
                 }
             } catch (e: NullPointerException) {
-                input.outMsg("Invalid data type")
+                input.outMsg("Invalid data type\n")
                 return sendCommandsData
             }
         }
@@ -61,10 +61,10 @@ class DataProcessing {
                 value = input.getNextWord(map["title"])
                 if (value.isBlank()) {
                     if (map.containsKey("null")) {
-                        sendCommandsData.getMapData().put(key, value)
+                        sendCommandsData.getMapData()[key] = value
                         break
                     } else {
-                        input.outMsg("The field can not be empty")
+                        input.outMsg("The field can not be empty\n")
                         continue
                     }
                 }
@@ -76,35 +76,35 @@ class DataProcessing {
                         "OrganizationType" -> OrganizationType.valueOf(value.uppercase())
                     }
                 } catch (e: NullPointerException) {
-                    input.outMsg("The field can not be empty")
+                    input.outMsg("The field can not be empty\n")
                     continue
                 } catch (e: IllegalArgumentException) {
-                    input.outMsg("Invalid data type")
+                    input.outMsg("Invalid data type\n")
                     continue
                 }
                 if (map.containsKey("min")) {
                     if (value.toInt() < map["min"]!!.toInt()) {
-                        input.outMsg("Too small value")
+                        input.outMsg("Too small value\n")
                         continue
                     }
                 } else if (map.containsKey("max")) {
                     if (value.toInt() > map["max"]!!.toInt()) {
-                        input.outMsg("Too much value")
+                        input.outMsg("Too much value\n")
                         continue
                     }
                 } else if (map.containsKey("maxLength")) {
                     if (value.length > map["maxLength"]!!.toInt()) {
-                        input.outMsg("Too much value")
+                        input.outMsg("Too much value\n")
                         continue
                     }
                 } else if(map.containsKey("minLength")) {
                     if (value.length < map["minLength"]!!.toInt()) {
-                        input.outMsg("Too small value")
+                        input.outMsg("Too small value\n")
                         continue
                     }
                 }
 
-                sendCommandsData.getMapData().put(key, value)
+                sendCommandsData.getMapData()[key] = value
                 break
             }
         }

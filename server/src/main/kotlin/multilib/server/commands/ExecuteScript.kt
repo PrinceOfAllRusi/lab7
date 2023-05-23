@@ -14,7 +14,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
     private val description: String = "read and execute a script from the specified file"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "script" to mapOf<String, String>(
-            "title" to "Enter an environment variable containing the path to the file",
+            "title" to "Enter an environment variable containing the path to the file\n",
             "type" to "String"
         )
     )
@@ -50,7 +50,7 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
             commandsList.getCommand(command)!!.action(mapData, result)
         }
 
-        result.setMessage("Done")
+        result.setMessage("Done\n")
 
         return result
     }

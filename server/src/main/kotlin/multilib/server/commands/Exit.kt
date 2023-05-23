@@ -3,15 +3,17 @@ package allForCommands.commands
 import multilib.utilities.result.Result
 
 class Exit : AbstractCommand() {
-    private val save = Save()
     private val description: String = "terminate program"
     private var fields: Map<String, Map<String, String>> = mapOf()
 
     override fun action(data: Map<String, String?>, result: Result): Result {
-        val newResult = save.action(data, result)
-        newResult.setExit(true)
+        if (result.getToken().getToken() != "") {
+            result.setMessage("You can not exit. Log out first\n")
+            return result
+        }
+        result.setExit(true)
 
-        return newResult
+        return result
     }
     override fun getDescription(): String = description
     override fun getFields() = fields

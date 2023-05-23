@@ -13,6 +13,7 @@ class Organization {
     private var employeesCount: Int? = null //Значение поля должно быть больше 0
     private var type: OrganizationType? = null //Поле может быть null
     private var postalAddress: Address? = Address("", "")//Поле может быть null
+    private var userLogin = ""
 
 
     override fun toString(): String {
@@ -25,7 +26,8 @@ class Organization {
         s.append("\nAnnual turnover of the organization: ").append(annualTurnover)
         s.append("\nNumber of employees in the organization: ").append(employeesCount)
         s.append("\nOrganization type: ").append(type)
-        s.append("\nName and code of the street where the organization is located: ").append(postalAddress.toString()).append("\n")
+        s.append("\nName and code of the street where the organization is located: ").append(postalAddress.toString())
+        s.append("\nCreator name: ").append(userLogin).append("\n")
         return s.toString()
     }
     fun getEmployeesCount(): Int? = employeesCount
@@ -36,17 +38,17 @@ class Organization {
     fun setCoordinates(coordinates: Coordinates) {
         this.coordinates = coordinates
     }
-    fun getCoordinatesX(): String {
-        return coordinates!!.getX().toString()
-    }
-    fun getCoordinatesY(): String {
-        return coordinates!!.getY().toString()
+    fun getCoordinatesX(): Int {
+        return coordinates!!.getX()
     }
     fun setCoordinatesX(x: Int) {
         coordinates!!.setX(x)
     }
     fun setCoordinatesY(y: Long) {
         coordinates!!.setY(y)
+    }
+    fun getCoordinatesY(): Long {
+        return coordinates!!.getY()
     }
     fun getPostalAddress(): Address? = postalAddress
     fun setPostalAddress(postalAddress: Address?) {
@@ -79,5 +81,9 @@ class Organization {
     fun getCreationDate(): LocalDateTime? = creationDate
     fun setCreationDate(creationDate: LocalDateTime?) {
         this.creationDate = creationDate
+    }
+    fun getUserLogin() = userLogin
+    fun setUserLogin(userLogin: String) {
+        this.userLogin = userLogin
     }
 }

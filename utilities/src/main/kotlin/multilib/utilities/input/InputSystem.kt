@@ -18,7 +18,7 @@ class InputSystem : Input {
 
         val words: List<String> = input.nextLine().split(" ")
         for (str in words) {
-            if (!str.isBlank()) {
+            if (str.isNotBlank()) {
                 list.add(str)
             }
         }
@@ -30,7 +30,7 @@ class InputSystem : Input {
     override fun outMsg(s: String?) {
         if (s == null)
             return
-        println(s)
+        print(s)
     }
     override fun close() {
         input.close()

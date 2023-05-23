@@ -23,9 +23,10 @@ class RemoveLower: AbstractCommand(), KoinComponent {
 
         val count = data["value"]!!.toInt()
         val newOrgs = MyCollection<Organization>()
+        val userLogin = data["userLogin"]
 
         for ( org in orgs ) {
-            if ( org.getPostalAddressStreet().length < count ) {
+            if ( org.getPostalAddressStreet().length < count && org.getUserLogin() == userLogin ) {
                 newOrgs.add(org)
             }
         }
@@ -33,7 +34,7 @@ class RemoveLower: AbstractCommand(), KoinComponent {
             orgs.remove(org)
         }
 
-        result.setMessage("Done")
+        result.setMessage("Done\n")
 
         return result
     }
@@ -43,7 +44,7 @@ class RemoveLower: AbstractCommand(), KoinComponent {
         val input = InputFile(data)
 
         for (key in fields.keys) {
-            mapData.put(key, input.getNextWord(null))
+            mapData[key] = input.getNextWord(null)
         }
 
         return mapData

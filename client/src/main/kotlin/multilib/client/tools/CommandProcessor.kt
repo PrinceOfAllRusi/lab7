@@ -25,7 +25,7 @@ class CommandProcessor: KoinComponent {
         val dataProcessor = DataProcessing()
         var xml = serializer.serialize(sendCommandsData)
         var receivedData = ""
-        val help = "Enter \"help\" to see information about commands"
+        val help = "Enter \"help\" to see information about commands\n"
 
         socket.send(xml)
         xml = socket.receive()
@@ -62,21 +62,21 @@ class CommandProcessor: KoinComponent {
                     } catch (e: UnrecognizedPropertyException) {
                         try {
                             commandsList = serializer.deserialize(receivedData)
-                            input.outMsg("Write command again")
+                            input.outMsg("Write command again\n")
                         } catch (e: UnrecognizedPropertyException) {
-                            input.outMsg("Wrong data")
+                            input.outMsg("Wrong data\n")
                         }
                     } catch (e: JsonParseException) {
-                        input.outMsg("Wrong data")
+                        input.outMsg("Wrong data\n")
                     }
 
 
                     input.outMsg(result.getMessage())
 
                 } catch ( e: NumberFormatException ) {
-                    input.outMsg("Wrong data")
+                    input.outMsg("Wrong data\n")
                 } catch ( e: NullPointerException ) {
-                    input.outMsg("Not all data entered")
+                    input.outMsg("Not all data entered\n")
                 }
             }
             if (result.getExit() == true) {

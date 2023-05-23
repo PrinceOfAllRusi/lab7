@@ -39,11 +39,11 @@ class CommandProcessor: KoinComponent {
 
             if (commandsList.getCommandsVersion() != receiveCommandsData.getCommandsVersion()) {
                 socket.sendCommandsData()
-                input.outMsg("Client connected without registration")
+                input.outMsg("Client connected without registration\n")
                 continue
             }
             command = receiveCommandsData.getName()
-            input.outMsg("Client send command: $command")
+            input.outMsg("Client send command: $command\n")
 
             if ((receiveCommandsData.getToken()!!.getToken() == "" ||
                         !receiveCommandsData.getToken()!!.validityCheck()) &&
@@ -65,14 +65,15 @@ class CommandProcessor: KoinComponent {
                 mapData.put("token", receiveCommandsData.getToken()!!.getToken())
                 mapData.put("address", socket.getHost().toString())
                 mapData.put("port", socket.getPort().toString())
+                mapData.put("userLogin", socket.getToken()!!.getLogin())
                 result = commandsList.getCommand(command)?.action(mapData, result)!!
             } catch ( e: NumberFormatException ) {
-                input.outMsg("Wrong data")
+                input.outMsg("Wrong data\n")
                 if ( input.javaClass == InputFile("").javaClass ) {
                     continue
                 }
             } catch ( e: NullPointerException ) {
-                input.outMsg("Not all data entered")
+                input.outMsg("Not all data entered\n")
             }
             xml = serializer.serialize(result)
             socket.send(xml)

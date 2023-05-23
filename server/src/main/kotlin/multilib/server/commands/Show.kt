@@ -19,6 +19,7 @@ class Show: AbstractCommand(), KoinComponent {
         for (org in orgs) {
             s.append(org.toString() + "\n")
         }
+        s.dropLast(2)
         result.setMessage(s.toString())
 
         return result

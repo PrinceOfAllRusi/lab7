@@ -1,21 +1,19 @@
 package tools
 
+import multilib.server.dataBase.DataBaseWorker
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import organization.MyCollection
 import organization.Organization
 import organization.OrganizationType
-import java.lang.Integer.max
 
 
 class CreateOrganization: KoinComponent {
 
-    private val orgs: MyCollection<Organization> by inject()
-    private var counter: Int = 0
+    private val dataBaseWorker: DataBaseWorker by inject()
 
     fun create(data: Map<String, String?>, lastOrganization: Organization?): Organization {
 
-        val org: Organization = Organization()
+        val org = Organization()
 
         val name: String
         val annualTurnover: Double
@@ -25,6 +23,7 @@ class CreateOrganization: KoinComponent {
         val type: OrganizationType
         val street: String
         val zipCode: String
+        val userLogin: String
 
         if (data["name"]!!.isBlank()) {
             name = lastOrganization!!.getName()!!
@@ -36,10 +35,10 @@ class CreateOrganization: KoinComponent {
             employeesCount = lastOrganization!!.getEmployeesCount()!!
         } else employeesCount = data["employeesCount"]!!.toInt()
         if (data["x"]!!.isBlank()) {
-            x = lastOrganization!!.getCoordinatesX()!!.toInt()
+            x = lastOrganization!!.getCoordinatesX()
         } else x = data["x"]!!.toInt()
         if (data["y"]!!.isBlank()){
-            y = lastOrganization!!.getCoordinatesY()!!.toLong()
+            y = lastOrganization!!.getCoordinatesY()
         } else y = data["y"]!!.toLong()
         if (data["type"]!!.isBlank()){
             type = lastOrganization!!.getType()!!
@@ -50,7 +49,9 @@ class CreateOrganization: KoinComponent {
         if (data["zipCode"]!!.isBlank()){
             zipCode = lastOrganization!!.getPostalAddressZipCode()
         } else zipCode = data["zipCode"]!!
-
+        if (data["userLogin"]!!.isBlank()) {
+            userLogin = lastOrganization!!.getUserLogin()
+        } else userLogin = data["userLogin"]!!
 
         org.setName(name)
         org.setAnnualTurnover(annualTurnover)
@@ -60,23 +61,14 @@ class CreateOrganization: KoinComponent {
         org.setType(type)
         org.setPostalAddressStreet(street)
         org.setPostalAddressZipCode(zipCode)
-
-        if ( orgs.size != 0 ) {
-            for ( organization in orgs ) {
-                counter = max( counter, organization.getId()!!  )
-            }
-        }
+        org.setUserLogin(userLogin)
 
         if (lastOrganization != null) {
             org.setId(lastOrganization.getId())
         } else {
-            org.setId(counter)
-            counter++
+            org.setId(dataBaseWorker.getNextOrgId())
         }
 
         return org
-    }
-    fun setCounter(counter: Int) {
-        this.counter = counter
     }
 }

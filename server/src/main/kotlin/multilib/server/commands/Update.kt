@@ -20,7 +20,7 @@ class Update: AbstractCommand, KoinComponent {
 
     constructor() {
         val typeStr = StringBuilder()
-        typeStr.append( "Select your organization type from these options" )
+        typeStr.append( "Select your organization type from these options\n" )
         val organizationType = OrganizationType.values()
         for ( i in organizationType.indices ) {
             typeStr.append( organizationType[i].toString() + "\n" )
@@ -32,30 +32,30 @@ class Update: AbstractCommand, KoinComponent {
                 "type" to "Int"
             ),
             "name" to mapOf<String, String>(
-                "title" to "Enter the name of your organization",
+                "title" to "Enter the name of your organization\n",
                 "type" to "String",
                 "null" to "true"
             ),
             "annualTurnover" to  mapOf<String, String>(
-                "title" to "Enter the annual turnover of your organization",
+                "title" to "Enter the annual turnover of your organization\n",
                 "type" to "Double",
                 "min" to "1",
                 "null" to "true"
             ),
             "employeesCount" to mapOf<String, String>(
-                "title" to "Enter the number of employees in your organization",
+                "title" to "Enter the number of employees in your organization\n",
                 "type" to "Int",
                 "min" to "1",
                 "null" to "true"
             ),
             "x" to mapOf<String, String>(
-                "title" to "Enter your organization's X coordinates",
+                "title" to "Enter your organization's X coordinates\n",
                 "type" to "Int",
                 "min" to "-312",
                 "null" to "true"
             ),
             "y" to mapOf<String, String>(
-                "title" to "Enter your organization's Y coordinates",
+                "title" to "Enter your organization's Y coordinates\n",
                 "type" to "Long",
                 "max" to "212",
                 "null" to "true"
@@ -66,12 +66,12 @@ class Update: AbstractCommand, KoinComponent {
                 "null" to "true"
             ),
             "street" to mapOf<String, String>(
-                "title" to "Enter the name of the street where your organization is located",
+                "title" to "Enter the name of the street where your organization is located\n",
                 "type" to "String",
                 "null" to "true"
             ),
             "zipCode" to mapOf<String, String>(
-                "title" to "Enter the street code where your organization is located",
+                "title" to "Enter the street code where your organization is located\n",
                 "type" to "String",
                 "maxLength" to "27",
                 "null" to "true"
@@ -80,14 +80,24 @@ class Update: AbstractCommand, KoinComponent {
     }
 
     override fun action(data: Map<String, String?>, result: Result): Result {
-
         val id = data["value"]!!.toInt()
         var lastOrganization = Organization()
+        val userLogin = data["userLogin"]
+
         for ( org in orgs ) {
             if ( id == org.getId() ) {
-                lastOrganization = org
-                break
+                if (org.getUserLogin() == userLogin) {
+                    lastOrganization = org
+                    break
+                } else {
+                    result.setMessage("You do not have access to this organization\n")
+                    return result
+                }
             }
+        }
+        if (lastOrganization.getId() == null) {
+            result.setMessage("This organization is not in the collection\n")
+            return result
         }
         val newOrganization: Organization = creator.create(data, lastOrganization)
         val orgComp = OrganizationComparator()
@@ -97,7 +107,7 @@ class Update: AbstractCommand, KoinComponent {
 
         orgs.sortWith( orgComp )
 
-        result.setMessage("Done")
+        result.setMessage("Done\n")
 
         return result
     }
@@ -107,7 +117,7 @@ class Update: AbstractCommand, KoinComponent {
         val input = InputFile(data)
 
         for (key in fields.keys) {
-            mapData.put(key, input.getNextWord(null))
+            mapData[key] = input.getNextWord(null)
         }
 
         return mapData

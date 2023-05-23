@@ -19,13 +19,17 @@ class RemoveAt: AbstractCommand(), KoinComponent {
     )
 
     override fun action(data: Map<String, String?>, result: Result): Result {
-
-        val index = data["value"]!!.toInt()
+        val index = data["value"]!!.toInt() + 1
         try {
-            orgs.removeAt(index)
-            result.setMessage("Done")
+            val org = orgs[index]
+            if (org.getUserLogin() == result.getToken().getLogin()) {
+                orgs.removeAt(index)
+                result.setMessage("Done\n")
+            } else {
+                result.setMessage("You do not have access to this organization\n")
+            }
         } catch (e: IndexOutOfBoundsException) {
-            result.setMessage("Wrong data")
+            result.setMessage("There is no organization in this position\n")
         }
 
         return result
@@ -36,7 +40,7 @@ class RemoveAt: AbstractCommand(), KoinComponent {
         val input = InputFile(data)
 
         for (key in fields.keys) {
-            mapData.put(key, input.getNextWord(null))
+            mapData[key] = input.getNextWord(null)
         }
 
         return mapData

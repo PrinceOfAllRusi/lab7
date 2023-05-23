@@ -3,6 +3,7 @@ package multilib.server.commands
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
 import multilib.server.tools.Hasher
+import multilib.server.tools.User
 import multilib.utilities.commandsData.Token
 import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
@@ -18,11 +19,11 @@ class LogIn: AbstractCommand(), KoinComponent {
     private val description: String = "allows you to login"
     private var fields: Map<String, Map<String, String>> = mapOf(
         "login" to mapOf(
-            "title" to "Enter login",
+            "title" to "Enter login\n",
             "type" to "String"
         ),
         "password" to mapOf(
-            "title" to "Enter password",
+            "title" to "Enter password\n",
             "type" to "String"
         )
     )
@@ -30,13 +31,14 @@ class LogIn: AbstractCommand(), KoinComponent {
     override fun action(data: Map<String, String?>, result: Result): Result {
         val login = data["login"]!!
         val password = hasher.hash(data["password"]!!)
+        val user = dataBaseWorker.getUser(login, password)
 
-        if (dataBaseWorker.getUserInfoForLogIn(login, password)) {
-            result.setMessage("This user does not exist")
+        if (user.getLogin() == "") {
+            result.setMessage("This user does not exist\n")
             return result
         }
-        input.outMsg("Client log in")
-        result.setMessage("You are log in")
+        input.outMsg("Client log in\n")
+        result.setMessage("You are log in\n")
         val token = Token()
         token.setAddress(data["address"]!!)
         token.setPort(data["port"]!!)

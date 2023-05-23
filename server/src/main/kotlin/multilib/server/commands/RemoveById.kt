@@ -22,18 +22,19 @@ class RemoveById: AbstractCommand(), KoinComponent {
     override fun action(data: Map<String, String?>, result: Result): Result {
 
         val id: Int = data["value"]!!.toInt()
-        var condition: Boolean = false
+        var message = "This organization is not in the collection\n"
+        val userLogin = data["userLogin"]
 
         for ( org in orgs ) {
             if ( org.getId() == id ) {
-                orgs.remove( org )
-                condition = true
+                if (org.getUserLogin() == userLogin) {
+                    orgs.remove( org )
+                    message = "Done\n"
+                } else message = "You do not have access to this organization\n"
                 break
             }
         }
-        if (condition) result.setMessage("Done")
-        else result.setMessage("This organization is not in the collection")
-
+        result.setMessage(message)
         return result
     }
     override fun getDescription(): String = description

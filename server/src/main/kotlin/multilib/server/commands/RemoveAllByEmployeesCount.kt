@@ -22,20 +22,21 @@ class RemoveAllByEmployeesCount : AbstractCommand(), KoinComponent {
 
         val count = data["value"]!!.toInt()
         val newOrgs = MyCollection<Organization>()
+        val userLogin = data["userLogin"]
 
         for ( org in orgs ) {
-            if ( org.getEmployeesCount()!! == count ) {
+            if ( org.getEmployeesCount()!! == count && org.getUserLogin() == userLogin) {
                 newOrgs.add(org)
             }
         }
         if (newOrgs.size == 0) {
-            result.setMessage("No such organizations found")
+            result.setMessage("No such organizations found\n")
             return result
         }
         for ( org in newOrgs ) {
             orgs.remove(org)
         }
-        result.setMessage("Done")
+        result.setMessage("Done\n")
 
         return result
     }
