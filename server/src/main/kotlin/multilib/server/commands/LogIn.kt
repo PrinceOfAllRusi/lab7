@@ -2,18 +2,15 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
-import multilib.server.tools.Hasher
-import multilib.server.tools.User
+import multilib.utilities.tools.Hasher
 import multilib.utilities.commandsData.Token
 import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import tools.DataList
 
 class LogIn: AbstractCommand(), KoinComponent {
     private val dataBaseWorker: DataBaseWorker by inject()
-    private val clientList: DataList by inject()
     private val hasher = Hasher()
     private val input = InputSystem()
     private val description: String = "allows you to login"
@@ -30,7 +27,7 @@ class LogIn: AbstractCommand(), KoinComponent {
 
     override fun action(data: Map<String, String?>, result: Result): Result {
         val login = data["login"]!!
-        val password = hasher.hash(data["password"]!!)
+        val password = hasher.hashString(data["password"]!!)
         val user = dataBaseWorker.getUser(login, password)
 
         if (user.getLogin() == "") {
@@ -43,8 +40,7 @@ class LogIn: AbstractCommand(), KoinComponent {
         token.setAddress(data["address"]!!)
         token.setPort(data["port"]!!)
         token.setLogin(login)
-        token.setHashToken()
-        clientList.getTokenList().add(token)
+        token.setTokenName(hasher.hashToken(login, token.getTime()))
         result.setToken(token)
         return result
     }

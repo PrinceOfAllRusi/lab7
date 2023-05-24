@@ -1,7 +1,10 @@
 package allForCommands.commands
 
+import multilib.utilities.tools.Hasher
+import multilib.utilities.commandsData.Token
 import multilib.utilities.input.*
 import multilib.utilities.result.Result
+import java.time.LocalDateTime
 
 abstract class AbstractCommand {
     private var description: String
@@ -26,4 +29,12 @@ abstract class AbstractCommand {
         return mapData
     }
     open fun tokenRequirements(): Boolean = true
+    open fun updateToken(token: Token): Token {
+        val login = token.getLogin()
+        val time = LocalDateTime.now()
+        val tokenName = Hasher().hashToken(login, time)
+        token.setTokenName(tokenName)
+        token.setTime(time)
+        return token
+    }
 }

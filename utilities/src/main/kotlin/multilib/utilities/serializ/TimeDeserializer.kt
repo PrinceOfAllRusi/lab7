@@ -16,7 +16,7 @@ class TimeDeserializer @JvmOverloads constructor(vc: Class<*>? = null) :
     override fun deserialize(jp: JsonParser, ctxt: DeserializationContext?): LocalDateTime {
         val node: JsonNode = jp.getCodec().readTree(jp)
         val seconds: Long = node.asLong()
-        val creationDate: LocalDateTime =  LocalDateTime.ofInstant(Instant.ofEpochSecond(seconds), ZoneOffset.UTC)
+        val creationDate: LocalDateTime =  LocalDateTime.ofInstant(Instant.ofEpochMilli(seconds), ZoneOffset.UTC)
 
         return creationDate
     }

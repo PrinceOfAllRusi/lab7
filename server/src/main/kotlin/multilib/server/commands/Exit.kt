@@ -7,7 +7,7 @@ class Exit : AbstractCommand() {
     private var fields: Map<String, Map<String, String>> = mapOf()
 
     override fun action(data: Map<String, String?>, result: Result): Result {
-        if (result.getToken().getToken() != "") {
+        if (result.getToken().getTokenName() != "") {
             result.setMessage("You can not exit. Log out first\n")
             return result
         }

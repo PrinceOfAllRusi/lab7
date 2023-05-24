@@ -5,39 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3029cd4-295c-40f0-8340-2b7b2042e203" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/User.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/tools/Hasher.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/modul/SingletonObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/modul/SingletonObject.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/CommandProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/CommandProcessor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/DataProcessing.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/DataProcessing.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/file/ReadFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/file/WriteFile.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/socket/ClientSocket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/socket/ClientSocket.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/AbstractCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/AbstractCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Add.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Add.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Clear.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Clear.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/CountGreaterThanAnnualTurnover.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/CountGreaterThanAnnualTurnover.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/ExecuteScript.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/ExecuteScript.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Exit.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Exit.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/FilterStartsWithName.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/FilterStartsWithName.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Help.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Help.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Info.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Info.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/InsertAt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/InsertAt.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/LogIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/LogIn.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/LogOut.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/LogOut.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Registration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Registration.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAllByEmployeesCount.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAllByEmployeesCount.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveAt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveById.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveById.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveLower.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/RemoveLower.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Save.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Save.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Show.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Show.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Update.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/commands/Update.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/dataBase/DataBaseWorker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/dataBase/DataBaseWorker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/Organization.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/organization/Organization.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/modul/SingletonObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/modul/SingletonObject.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CommandProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CommandProcessor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CreateOrganization.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CreateOrganization.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/file/ReadFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/file/WriteFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/input/InputSystem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/input/InputSystem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/DataList.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/Hasher.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/commandsData/ClientCommandsData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/commandsData/ClientCommandsData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/commandsData/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/commandsData/Token.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeDeserializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeDeserializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeSerializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/src/main/kotlin/multilib/utilities/serializ/TimeSerializer.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,24 +76,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/JavaP/lab7Ktln/test",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JavaP/lab7Ktln/test&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JavaP\lab6Ktln\test\client\src\main\kotlin\multilib\client" />
       <recent name="D:\JavaP\lab6Ktln\test\server\src\main\kotlin\multilib\server" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="multilib.utilities.tools" />
+      <recent name="multilib.server.tools" />
       <recent name="multilib.utilities.commandsData" />
       <recent name="multilib.client.tools.file" />
       <recent name="multilib.client.tools.socket" />
@@ -114,7 +105,7 @@
       <recent name="multilib.utilities.serializ" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.ServerKt">
+  <component name="RunManager" selected="Gradle.test [client:run]">
     <configuration name="test [client:run]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -164,30 +155,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataBaseWorkerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multilib.server.dataBase.DataBaseWorkerKt" />
-      <module name="multilib.server.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="multilib.server.ServerKt" />
       <module name="multilib.server.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShowKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="allForCommands.commands.ShowKt" />
-      <module name="multilib.server.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TokenKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multilib.utilities.commandsData.TokenKt" />
-      <module name="multilib.utilities.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,9 +178,6 @@
     <list>
       <item itemvalue="Gradle.test [client:run]" />
       <item itemvalue="Gradle.test [server:run]" />
-      <item itemvalue="Kotlin.ShowKt" />
-      <item itemvalue="Kotlin.TokenKt" />
-      <item itemvalue="Kotlin.DataBaseWorkerKt" />
       <item itemvalue="Kotlin.ClientKt" />
       <item itemvalue="Kotlin.ServerKt" />
     </list>
@@ -218,9 +185,6 @@
       <list>
         <item itemvalue="Kotlin.ClientKt" />
         <item itemvalue="Kotlin.ServerKt" />
-        <item itemvalue="Kotlin.ShowKt" />
-        <item itemvalue="Kotlin.TokenKt" />
-        <item itemvalue="Kotlin.DataBaseWorkerKt" />
       </list>
     </recent_temporary>
   </component>
@@ -245,5 +209,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/multilib/server/tools/CommandProcessor.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/client/src/main/kotlin/multilib/client/tools/CommandProcessor.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

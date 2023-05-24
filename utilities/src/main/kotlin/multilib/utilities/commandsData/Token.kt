@@ -1,16 +1,17 @@
 package multilib.utilities.commandsData
 
+import multilib.utilities.tools.Hasher
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
 class Token {
-    private var token: String
+    private var tokenName: String
     private var time: LocalDateTime
     private var address: String
     private var port: String
     private var login: String
     constructor() {
-        token = ""
+        tokenName = ""
         time = LocalDateTime.now()
         address = ""
         port = ""
@@ -27,12 +28,9 @@ class Token {
         this.address = address
     }
     fun getAddress() = address
-    fun getToken() = token
-    fun setToken(token: String) {
-        this.token = token
-    }
-    fun setHashToken() {
-        token = address.hashCode().toString()
+    fun getTokenName() = tokenName
+    fun setTokenName(token: String) {
+        this.tokenName = token
     }
     fun setPort(host: String) {
         this.port = host
@@ -44,6 +42,7 @@ class Token {
     fun getLogin() = login
     fun validityCheck(): Boolean { //вернет true, если токен валидный
         val hours = time.until(LocalDateTime.now(), ChronoUnit.HOURS)
-        return hours < 1
+        val verifiableTokenName = Hasher().hashToken(login, time)
+        return (hours < 1 && verifiableTokenName == tokenName)
     }
 }

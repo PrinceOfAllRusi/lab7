@@ -12,6 +12,6 @@ import java.time.ZoneOffset
 class TimeSerializer @JvmOverloads constructor(t: Class<LocalDateTime>? = null) : StdSerializer<LocalDateTime>(t) {
     @Throws(IOException::class, JsonProcessingException::class)
     override fun serialize(value: LocalDateTime, jgen: JsonGenerator, provider: SerializerProvider) {
-        jgen.writeNumber(value.toEpochSecond(ZoneOffset.UTC))
+        jgen.writeNumber(value.toInstant(ZoneOffset.UTC).toEpochMilli())
     }
 }

@@ -14,7 +14,6 @@ class CommandProcessor: KoinComponent {
 
     private val dataBaseWorker: DataBaseWorker by inject()
     private val commandsList: CommandsList by inject()
-    private val clientList: DataList by inject()
 
     fun process(input: Input) {
 
@@ -26,6 +25,7 @@ class CommandProcessor: KoinComponent {
         dataBaseWorker.fillOrgsList()
 
         var command = ""
+        var requirements = true
         var receiveCommandsData = ClientCommandsData() //получаемые от клиента данные
 
         var xml = ""
@@ -44,10 +44,10 @@ class CommandProcessor: KoinComponent {
             }
             command = receiveCommandsData.getName()
             input.outMsg("Client send command: $command\n")
+            requirements = commandsList.getCommand(command)!!.tokenRequirements()
 
-            if ((receiveCommandsData.getToken()!!.getToken() == "" ||
-                        !receiveCommandsData.getToken()!!.validityCheck()) &&
-                commandsList.getCommand(command)!!.tokenRequirements()) {
+            if ((receiveCommandsData.getToken().getTokenName() == "" ||
+                        !receiveCommandsData.getToken().validityCheck()) && requirements) {
                 val s = StringBuilder()
                 s.append("register : ")
                 s.append(commandsList.getCommand("register")!!.getDescription() + "\n")
@@ -62,7 +62,6 @@ class CommandProcessor: KoinComponent {
             }
             try {
                 mapData = receiveCommandsData.getMapData()
-                mapData.put("token", receiveCommandsData.getToken()!!.getToken())
                 mapData.put("address", socket.getHost().toString())
                 mapData.put("port", socket.getPort().toString())
                 mapData.put("userLogin", socket.getToken()!!.getLogin())
@@ -75,11 +74,13 @@ class CommandProcessor: KoinComponent {
             } catch ( e: NullPointerException ) {
                 input.outMsg("Not all data entered\n")
             }
+            if (requirements && result.getToken().getTokenName() != "") {
+                result.setToken(commandsList.getCommand(command)?.updateToken(receiveCommandsData.getToken())!!)
+            }
             xml = serializer.serialize(result)
             socket.send(xml)
 
             if (result.getExit() == true) {
-                clientList.getTokenList().remove(socket.getToken())
                 result.setExit(false)
             }
         }

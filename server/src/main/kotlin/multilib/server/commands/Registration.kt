@@ -2,8 +2,7 @@ package multilib.server.commands
 
 import allForCommands.commands.AbstractCommand
 import multilib.server.dataBase.DataBaseWorker
-import multilib.server.tools.Hasher
-import multilib.server.tools.User
+import multilib.utilities.tools.Hasher
 import multilib.utilities.input.InputSystem
 import multilib.utilities.result.Result
 import org.koin.core.component.KoinComponent
@@ -27,7 +26,7 @@ class Registration: AbstractCommand(), KoinComponent {
     )
     override fun action(data: Map<String, String?>, result: Result): Result {
         val login = data["login"]!!
-        val password = hasher.hash(data["password"]!!)
+        val password = hasher.hashString(data["password"]!!)
         val user = dataBaseWorker.getUser(login, password)
 
         if (user.getLogin() == login) {

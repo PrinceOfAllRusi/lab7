@@ -11,7 +11,6 @@ import organization.Organization
 import tools.CommandsList
 import tools.CreateOrganization
 import kotlin.collections.ArrayList
-import tools.DataList
 
 object SingletonObject {
 
@@ -19,7 +18,6 @@ object SingletonObject {
         single<MyCollection<Organization>> { MyCollection() }
         single<ArrayList<String>> { ArrayList() }
         single<CreateOrganization> { CreateOrganization() }
-        single<DataList> { DataList() }
         single<DataBaseWorker> { DataBaseWorker() }
 
         val listCommand: Map<String, AbstractCommand> = mapOf("help" to Help(),

@@ -6,9 +6,6 @@ import java.net.DatagramSocket
 import java.net.InetAddress
 import java.net.SocketTimeoutException
 
-
-
-
 class ClientSocket {
     private val port = 1313
     private val host: InetAddress = InetAddress.getLocalHost()
@@ -18,7 +15,6 @@ class ClientSocket {
     private lateinit var sendingPacket: DatagramPacket
     private var receivingPacket = DatagramPacket(receivingDataBuffer, receivingDataBuffer.size)
     private var receivedData = ""
-    private var s = ""
     private val input = InputSystem()
 
     fun send(s: String) {
@@ -27,16 +23,16 @@ class ClientSocket {
         clientSocket.send(sendingPacket)
     }
     fun receive(): String {
-        s = ""
+        receivedData = ""
 
-        clientSocket.soTimeout = 10000
+//        clientSocket.soTimeout = 10000
         try {
             clientSocket.receive(receivingPacket)
-            s = String(receivingPacket.data, 0, receivingPacket.length)
+            receivedData = String(receivingPacket.data, 0, receivingPacket.length)
         } catch (e: SocketTimeoutException) {
-            input.outMsg("Connection timeout")
+            input.outMsg("Connection timeout\n")
         }
 
-        return s
+        return receivedData
     }
 }

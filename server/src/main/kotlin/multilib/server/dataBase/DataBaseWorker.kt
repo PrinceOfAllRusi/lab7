@@ -80,7 +80,7 @@ class DataBaseWorker: KoinComponent {
         return user
     }
     fun fillOrgsList() {
-        sql = "select * from organization;"
+        sql = "SELECT * FROM organization;"
         val orgData = mutableMapOf<String, String>()
         var id = 0
         var creationDate = LocalDateTime.now()
@@ -147,7 +147,7 @@ class DataBaseWorker: KoinComponent {
         return result
     }
     fun deleteAllInfoFromOrgTable() {
-        sql = "DELETE FROM organization"
+        sql = "TRUNCATE organization"
         try {
             preparedStatement = connection.prepareStatement(sql)
             preparedStatement.executeUpdate()

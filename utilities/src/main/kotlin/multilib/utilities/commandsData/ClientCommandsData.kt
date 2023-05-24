@@ -3,12 +3,12 @@ package multilib.utilities.commandsData
 class ClientCommandsData {
     private var name: String
     private var mapData: MutableMap<String, String?>
-    private var token: Token?
+    private var token: Token
     private var commandsVersion: Int
     constructor() {
         name = ""
         mapData = mutableMapOf()
-        token = null
+        token = Token()
         commandsVersion = 0
     }
     fun getName() = name
@@ -22,7 +22,7 @@ class ClientCommandsData {
     fun clearMap() {
         mapData.clear()
     }
-    fun setToken(token: Token?) {
+    fun setToken(token: Token) {
         this.token = token
     }
     fun getToken() = token
