@@ -9,7 +9,6 @@ import multilib.utilities.commandsData.*
 import multilib.client.commandsData.ServerCommandsData
 import multilib.client.tools.socket.ClientSocket
 import multilib.utilities.serializ.Serializer
-import multilib.utilities.tools.Hasher
 
 class CommandProcessor: KoinComponent {
 

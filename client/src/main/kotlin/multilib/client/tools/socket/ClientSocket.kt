@@ -25,7 +25,7 @@ class ClientSocket {
     fun receive(): String {
         receivedData = ""
 
-//        clientSocket.soTimeout = 10000
+        clientSocket.soTimeout = 100000
         try {
             clientSocket.receive(receivingPacket)
             receivedData = String(receivingPacket.data, 0, receivingPacket.length)

@@ -16,11 +16,11 @@ class Show: AbstractCommand(), KoinComponent {
     override fun action(data: Map<String, String?>, result: Result): Result {
 
         val s = StringBuilder()
+        result.setMessage("Collection is empty\n")
         for (org in orgs) {
             s.append(org.toString() + "\n")
         }
-        s.dropLast(2)
-        result.setMessage(s.toString())
+        if (s.toString() != "") result.setMessage(s.toString())
 
         return result
     }

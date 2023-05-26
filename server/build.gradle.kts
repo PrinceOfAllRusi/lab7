@@ -15,6 +15,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation("org.postgresql:postgresql:9.3-1100-jdbc4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     api(project(":utilities"))
 }
 

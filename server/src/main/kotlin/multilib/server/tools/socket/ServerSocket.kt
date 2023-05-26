@@ -29,7 +29,7 @@ class ServerSocket {
         outputPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
         serverSocket.send(outputPacket)
     }
-    fun send(s: String) {
+    fun send(s: String, host: InetAddress, port: Int) {
         sendingDataBuffer = s.toByteArray()
 
         outputPacket = DatagramPacket(sendingDataBuffer, sendingDataBuffer.size, host, port)
