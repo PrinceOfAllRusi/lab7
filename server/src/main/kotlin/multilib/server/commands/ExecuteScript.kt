@@ -27,12 +27,16 @@ class ExecuteScript: AbstractCommand(), KoinComponent {
 
         try {
             while(true) {
+                println("$command : command")
                 if (commandsList.containsCommand(command)) {
                     data = input.getNextWord(null)
+                    println("$data : data")
                     while(!commandsList.containsCommand(data)) {
                         dataList += data + "\n"
                         data = input.getNextWord(null)
+                        println("$data : inner data")
                     }
+                    println("$dataList : dataList")
                     mapData = commandsList.getCommand(command)!!.commandBuilding(mapData, dataList)
                     commandsList.getCommand(command)!!.action(mapData, result)
                     dataList = ""

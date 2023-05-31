@@ -23,7 +23,7 @@ abstract class AbstractCommand {
         val input = InputFile(data)
 
         for (key in fields.keys) {
-            mapData.put(key, input.getNextWord(null))
+            mapData[key] = input.getNextWord(null)
         }
 
         return mapData
